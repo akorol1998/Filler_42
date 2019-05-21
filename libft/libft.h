@@ -12,7 +12,6 @@
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 100
 # include "fcntl.h"
 # include "sys/types.h"
 # include "sys/uio.h"

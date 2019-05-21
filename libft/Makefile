@@ -71,7 +71,7 @@ SRC =   ft_bzero.c \
         ft_lstadd.c \
         ft_lstiter.c \
         ft_lstmap.c \
-		newfile.c \
+		get_next_line.c \
 		ft_add_break.c \
 		ft_min.c \
 		ft_max.c \

@@ -1,6 +1,7 @@
-seed = 4968
+seed = 3956
 O: error on input
 ./akorol.filler: Segfault at 0
+X: error on input
 ./akorol.filler: Segfault at 0
 ./akorol.filler won
 Score:
