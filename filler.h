@@ -1,16 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   filler.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/18 14:46:39 by akorol            #+#    #+#             */
-/*   Updated: 2019/04/18 14:47:48 by akorol           ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FILLER_H
-# define BUF_SIZE 16
+# define FILLER_H
+# include "libft/libft.h"
+
+typedef struct s_filler
+{
+	int		*token;
+	char 	*map;
+	int 	sign;
+	int 	map_x;
+	int 	map_y;
+	int 	token_x;
+	int 	token_y;
+	int 	*map_xy;		// array for the possible coordinates of where to put the token
+
+}				t_filler;
 
 #endif

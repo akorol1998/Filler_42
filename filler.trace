@@ -1,4 +1,7 @@
-seed = 7661
-resources/players/abanlin.filler won
+seed = 4968
+O: error on input
+./akorol.filler: Segfault at 0
+./akorol.filler: Segfault at 0
+./akorol.filler won
 Score:
-132AGAINST0
+0AGAINST0
