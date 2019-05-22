@@ -1,67 +1,76 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   newfile.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mikim <mikim@student.42.us.org>            +#+  +:+       +#+        */
+/*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/03/20 18:53:48 by mikim             #+#    #+#             */
-/*   Updated: 2019/05/21 18:39:25 by akorol           ###   ########.fr       */
+/*   Created: 2019/05/22 12:39:54 by akorol            #+#    #+#             */
+/*   Updated: 2019/05/22 14:39:00 by akorol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_new_line(char **s, char **line, int fd, int ret)
+static	int		ft_count_words(const char *str, char c)
 {
-	char	*tmp;
-	int		len;
+	int	word;
+	int	i;
 
-	len = 0;
-	while (s[fd][len] != '\n' && s[fd][len] != '\0')
-		len++;
-	if (s[fd][len] == '\n')
+	i = 0;
+	word = 0;
+	if (!str)
+		return (0);
+	while (str[i])
 	{
-		*line = ft_strsub(s[fd], 0, len);
-		tmp = ft_strdup(s[fd] + len + 1);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (s[fd][0] == '\0')
-			ft_strdel(&s[fd]);
+		if (str[i] == c && str[i + 1] != c)
+			word++;
+		i++;
 	}
-	else if (s[fd][len] == '\0')
-	{
-		if (ret == BUFF_SIZE)
-			return (get_next_line(fd, line));
-		*line = ft_strdup(s[fd]);
-		ft_strdel(&s[fd]);
-	}
-	return (1);
+	if (str[0] != '\0')
+		word++;
+	return (word);
 }
 
-int		get_next_line(const int fd, char **line)
+static	char	*ft_word(const char *str, char c, int *i)
 {
-	static char	*s[255];
-	char		buf[BUFF_SIZE + 1];
-	char		*tmp;
-	int			ret;
+	char	*s;
+	int		k;
 
-	if (fd < 0 || line == NULL)
-		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	if (!(s = (char *)malloc(sizeof(s) * (ft_strlen(str)))))
+		return (NULL);
+	k = 0;
+	while (str[*i] != c && str[*i])
 	{
-		buf[ret] = '\0';
-		if (s[fd] == NULL)
-			s[fd] = ft_strnew(1);
-		tmp = ft_strjoin(s[fd], buf);
-		free(s[fd]);
-		s[fd] = tmp;
-		if (ft_strchr(buf, '\n'))
-			break ;
+		s[k] = str[*i];
+		k++;
+		*i += 1;
 	}
-	if (ret < 0)
-		return (-1);
-	else if (ret == 0 && (s[fd] == NULL || s[fd][0] == '\0'))
-		return (0);
-	return (ft_new_line(s, line, fd, ret));
+	s[k] = '\0';
+	while (str[*i] == c && str[*i])
+		*i += 1;
+	return (s);
+}
+
+char			**ft_strsplit(const char *str, char c)
+{
+	int		i;
+	int		j;
+	int		wrd;
+	char	**s;
+
+	i = 0;
+	j = 0;
+	wrd = ft_count_words(str, c);
+	if (!(s = (char **)malloc(sizeof(s) * (ft_count_words(str, c) + 2))))
+		return (NULL);
+	while (str[i] == c && str[i])
+		i++;
+	while (j < wrd && str[i])
+	{
+		s[j] = ft_word(str, c, &i);
+		j++;
+	}
+	s[j] = NULL;
+	return (s);
 }

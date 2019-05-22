@@ -6,7 +6,7 @@
 #    By: akorol <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 16:52:16 by akorol            #+#    #+#              #
-#    Updated: 2019/05/21 18:40:53 by akorol           ###   ########.fr        #
+#    Updated: 2019/05/22 14:30:26 by akorol           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,6 @@ SRC =   ft_bzero.c \
         ft_strjoin.c \
         ft_strtrim.c \
         ft_itoa.c \
-        ft_strsplit.c \
         ft_putstr.c \
         ft_putendl.c \
         ft_putnbr.c \
@@ -71,10 +70,14 @@ SRC =   ft_bzero.c \
         ft_lstadd.c \
         ft_lstiter.c \
         ft_lstmap.c \
-		newfile.c \
 		ft_add_break.c \
 		ft_min.c \
 		ft_max.c \
+		get_next_line.c \
+		ft_strsplit.c \
+		newfile.c \
+
+
 
 CFLAGS = -Wextra -Wall -Werror
 

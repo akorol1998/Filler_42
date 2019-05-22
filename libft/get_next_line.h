@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strsub.c                                        :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/16 17:02:14 by akorol            #+#    #+#             */
-/*   Updated: 2019/05/22 13:38:59 by akorol           ###   ########.fr       */
+/*   Created: 2019/05/22 14:38:42 by akorol            #+#    #+#             */
+/*   Updated: 2019/05/22 14:38:46 by akorol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
+# define BUFF_SIZE 1
 
-char	*ft_strsub(char const *s, unsigned int start, size_t len)
-{
-	char			*baton;
+# include "fcntl.h"
+# include "sys/types.h"
+# include "sys/uio.h"
+# include "unistd.h"
+# include "stdlib.h"
+# include "libft.h"
 
-	if (s == NULL)
-		return (NULL);
-	if (!(baton = ft_strnew(len)))
-		return (NULL);
-	return (ft_strncpy(baton, s + start, len));
-}
+int		ft_new_line(char **s, char **line, int fd, int ret);
+int		get_next_line(const int fd, char **line);
+
+#endif

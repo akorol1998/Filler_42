@@ -6,13 +6,13 @@
 /*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 13:52:34 by akorol            #+#    #+#             */
-/*   Updated: 2019/05/21 18:44:39 by akorol           ###   ########.fr       */
+/*   Updated: 2019/05/22 12:52:53 by akorol           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
-# define BUFF_SIZE 100
+# include "get_next_line.h"
 # include "fcntl.h"
 # include "sys/types.h"
 # include "sys/uio.h"
