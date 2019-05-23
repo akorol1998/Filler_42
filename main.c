@@ -48,6 +48,8 @@ void			read_size(t_filler *my_t, char *line)
 	{
 		my_t->tok_row = ft_atoi(tab[0]);
 		my_t->tok_col = ft_atoi(tab[1]);
+		ft_putnbr_fd(my_t->tok_row, g_fd);
+		ft_putnbr_fd(my_t->tok_col, g_fd);
 		reading_token(my_t);
 	}
 	free(tab[0]);
@@ -71,20 +73,25 @@ void			read_vm(t_filler *my_t)
 	while ((a = get_next_line(0, &line)))
 	{
 		iter++;
+		ft_putstr_fd(line, g_fd);
+		ft_putstr_fd("\n", g_fd);
 		if (iter == 1)
 			search_for_sign(my_t, line);
 		else if (ft_strlen(line) >= 7 && line[0] == 'P')
+		{
 			read_size(my_t, line);
-
-		// ft_putstr_fd(line, g_fd);
-		// ft_putstr_fd("\n", g_fd);
-		// ft_putstr("12 14\n");
+			if (line[1] == 'i')
+			{
+				if (!setting_up_token(my_t))
+					break;
+			}
+		}
 	}
 }
 
 void	make_structure(t_filler *my_t)
 {
-	my_t->tok = NULL;
+	// my_t->tok = NULL;
 	my_t->map = NULL;
 	my_t->sign = 0;
 	my_t->map_row = 0;
@@ -95,7 +102,9 @@ void	make_structure(t_filler *my_t)
 	my_t->tok_y = NULL;
 	my_t->valid_x = NULL;
 	my_t->valid_y = NULL;
-	my_t->count = 0;
+	my_t->x_cor = 0;
+	my_t->y_cor = 0;
+	my_t->head = 0;
 }
 
 int main()

@@ -49,6 +49,8 @@ void			reading_map(t_filler *my_t)
 		free(line);
 	}
 	my_t->map = tab;
+	my_t->valid_x = (int*)malloc(sizeof(int) * my_t->map_row * my_t->map_col);
+	my_t->valid_y = (int*)malloc(sizeof(int) * my_t->map_row * my_t->map_col);
 	i = -1;
 	while (++i < my_t->map_row)
 	{
@@ -68,15 +70,11 @@ void			fill_token_xy(char **tab, t_filler *my_t)
 	my_t->tok_y = (int*)malloc(sizeof(int) * my_t->count);
 	i = -1;
 	k = 0;
-	ft_putstr_fd("my count\n", g_fd);
-	ft_putnbr_fd(my_t->count, g_fd);
 	while (tab[++i])
 	{
 		j = 0;
 		while (tab[i][j])
 		{
-			ft_putnbr_fd(j, g_fd);
-			ft_putstr_fd("\n", g_fd);
 			if (tab[i][j] == '*')
 			{
 				my_t->tok_x[k] = i;
@@ -99,6 +97,7 @@ void			reading_token(t_filler *my_t)
 	i = -1;
 	tab = (char**)malloc(sizeof(char*) * my_t->tok_row + 1);
 	tab[my_t->tok_row] = NULL;
+	my_t->count = 0;
 	while (++i < my_t->tok_row)
 	{
 		j = -1;
@@ -111,7 +110,7 @@ void			reading_token(t_filler *my_t)
 		}
 		free(line);
 	}
-	// my_t->tok = tab;
+
 	
 	i = -1;
 	ft_putstr_fd("Token\n", g_fd);
@@ -121,11 +120,4 @@ void			reading_token(t_filler *my_t)
 		ft_putstr_fd("\n", g_fd);
 	}
 	fill_token_xy(tab, my_t);
-
-	
-	for(int p=0; p<my_t->count; p++)
-	{
-		ft_putnbr_fd(my_t->tok_x[p], g_fd);
-		ft_putnbr_fd(my_t->tok_y[p], g_fd);
-	}
 }
