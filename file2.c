@@ -39,6 +39,10 @@ int			setting_up_token(t_filler *my_t)
 	}
 	else
 	{
+		ft_putnbr(0);
+		ft_putstr(" ");
+		ft_putnbr(0);
+		ft_putstr("\n");
 		clean_structure(my_t);
 		return (0);
 	}

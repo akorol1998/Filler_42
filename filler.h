@@ -34,7 +34,7 @@ int				can_we_fit_it(t_filler *my_t);
 int				token_check(int	i, int j, t_filler *my_t);
 int				check_map_cell(t_filler *my_t);
 void			token_calculations(int i, int j, int k, t_filler *mt_t);
-int			setting_up_token(t_filler *my_t);
+int				setting_up_token(t_filler *my_t);
 void			searching_place(t_filler *my_t);
 void			calculate_distance(int i, int j, int k, t_filler *myt);
 void			clean_structure(t_filler *my_t);

@@ -56,7 +56,6 @@ void			read_size(t_filler *my_t, char *line)
 	free(tab[1]);
 	free(tab);
 	free(str);
-	free(line);
 }
 
 void			read_vm(t_filler *my_t)
@@ -85,6 +84,7 @@ void			read_vm(t_filler *my_t)
 				if (!setting_up_token(my_t))
 					break;
 			}
+			free(line);
 		}
 	}
 }
@@ -115,6 +115,7 @@ int main()
 	make_structure(my_t);
 
 	read_vm(my_t);
+	free(my_t);
 	close(g_fd);
 	
 	return (0);
