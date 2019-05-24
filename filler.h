@@ -1,20 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   filler.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akorol <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/24 14:32:41 by akorol            #+#    #+#             */
+/*   Updated: 2019/05/24 14:32:51 by akorol           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FILLER_H
 # define FILLER_H
 # include "libft/libft.h"
-#include <sys/stat.h> 
-#include <fcntl.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 
 int		g_fd;
 
-typedef struct s_filler
+typedef struct	s_filler
 {
-	// char		**tok;
-	char 		**map;
-	int 		sign;
-	int 		map_row;
-	int 		map_col;
-	int 		tok_row;
-	int 		tok_col;
+	char		**map;
+	int			sign;
+	int			map_row;
+	int			map_col;
+	int			tok_row;
+	int			tok_col;
 	int			*tok_x;
 	int			*tok_y;
 	int			*valid_x;
@@ -23,7 +34,7 @@ typedef struct s_filler
 	int			count;
 	int			x_cor;
 	int			y_cor;
-	int			head;			// Try later use it instead of dist 
+	int			head;
 	int			dist;
 }				t_filler;
 
@@ -38,4 +49,7 @@ int				setting_up_token(t_filler *my_t);
 void			searching_place(t_filler *my_t);
 void			calculate_distance(int i, int j, int k, t_filler *myt);
 void			clean_structure(t_filler *my_t);
+void			make_structure(t_filler *my_t);
+void			read_figure(char *line, char **tab, t_filler *my_t);
+void			token_coordinates(char **tab, t_filler *my_t);
 #endif

@@ -12,23 +12,6 @@
 
 #include "filler.h"
 
-int				root(int num)
-{
-	int			b;
-
-	b = 1;
-	while(b * b < num)
-	{
-		b++;
-		if (b * b > num)
-		{
-			b--;
-			break;
-		}
-	}
-	return (b);
-}
-
 void			reading_map(t_filler *my_t)
 {
 	char		**tab;
@@ -41,7 +24,6 @@ void			reading_map(t_filler *my_t)
 	tab[my_t->map_row] = NULL;
 	a = get_next_line(0, &line);
 	free(line);
-	ft_putstr_fd("Map\n", g_fd);
 	while (++i < my_t->map_row)
 	{
 		get_next_line(0, &line);
@@ -51,12 +33,6 @@ void			reading_map(t_filler *my_t)
 	my_t->map = tab;
 	my_t->valid_x = (int*)malloc(sizeof(int) * my_t->map_row * my_t->map_col);
 	my_t->valid_y = (int*)malloc(sizeof(int) * my_t->map_row * my_t->map_col);
-	i = -1;
-	while (++i < my_t->map_row)
-	{
-		ft_putstr_fd(tab[i], g_fd);
-		ft_putstr_fd("\n", g_fd);
-	}
 }
 
 void			fill_token_xy(char **tab, t_filler *my_t)
@@ -64,7 +40,6 @@ void			fill_token_xy(char **tab, t_filler *my_t)
 	int			i;
 	int			j;
 	int			k;
-
 
 	my_t->tok_x = (int*)malloc(sizeof(int) * my_t->count);
 	my_t->tok_y = (int*)malloc(sizeof(int) * my_t->count);
@@ -86,11 +61,21 @@ void			fill_token_xy(char **tab, t_filler *my_t)
 	}
 }
 
+void			token_coordinates(char **tab, t_filler *my_t)
+{
+	int			i;
+
+	fill_token_xy(tab, my_t);
+	i = -1;
+	while (tab[++i])
+		free(tab[i]);
+	free(tab);
+}
+
 void			reading_token(t_filler *my_t)
 {
 	char		**tab;
 	char		*line;
-	size_t		a;
 	int			i;
 	int			j;
 
@@ -110,14 +95,5 @@ void			reading_token(t_filler *my_t)
 		}
 		free(line);
 	}
-
-	
-	i = -1;
-	ft_putstr_fd("Token\n", g_fd);
-	while (++i < my_t->tok_row)
-	{
-		ft_putstr_fd(tab[i], g_fd);
-		ft_putstr_fd("\n", g_fd);
-	}
-	fill_token_xy(tab, my_t);
+	token_coordinates(tab, my_t);
 }
